@@ -82,9 +82,13 @@ public class User implements Serializable {
 
     try (FileInputStream fileInputStream = new FileInputStream(file.toString());
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+
       friends = (ArrayList<User>) objectInputStream.readObject();
-    } catch (IOException | ClassNotFoundException exception) {
+
+    } catch (ClassNotFoundException exception) {
       System.out.println("Failed to load friends.list");
+    } catch (IOException exception) {
+      //Friends list does not exist
     }
   }
 
@@ -95,10 +99,13 @@ public class User implements Serializable {
     Path path = Paths.get("lib/UserData/" + userFolder + "/");
     Path file = path.resolve("friends.list");
 
+    System.out.println(file.toString());
+
     try (FileOutputStream fileOutputStream = new FileOutputStream(file.toString());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
-      System.out.println(friends);
+
       objectOutputStream.writeObject(friends);
+
     } catch (IOException exception) {
       System.out.println("Failed to save friends.list");
     }
@@ -108,7 +115,7 @@ public class User implements Serializable {
    * A function to deserialize all the message files in a users messages folder and load them into
    * the messages ArrayList. Messages are sorted by the date that they were created.
    */
-  public void loadMessages() {
+  private void loadMessages() {
     Path path = Paths.get("lib/UserData/" + userFolder + "/messages");
     File file = new File(path.toString());
 
@@ -117,15 +124,12 @@ public class User implements Serializable {
 
       if (messageFiles != null) {
         for (File messageFile : messageFiles) {
-          try {
-            FileInputStream fileInputStream = new FileInputStream(messageFile);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            Message message = (Message) objectInputStream.readObject();
+          try (FileInputStream fileInputStream = new FileInputStream(messageFile);
+              ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
 
+            Message message = (Message) objectInputStream.readObject();
             messages.add(message);
 
-            fileInputStream.close();
-            objectInputStream.close();
           } catch (IOException exception) {
             System.out.println("IOException: unable to read message file " + messageFile);
           } catch (ClassNotFoundException exception) {
@@ -134,6 +138,7 @@ public class User implements Serializable {
           }
         }
 
+        //Sorts messages by the time that they were received, newest messages first
         Collections.sort(messages);
       }
     }

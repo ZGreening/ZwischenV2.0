@@ -13,7 +13,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" style="-fx-background-color: grey;"
   maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
   prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="riderequest.RideRequest" fx:id="root">
+  fx:controller="availabledrivers.AvailableDriversController" fx:id="root">
   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
     AnchorPane.topAnchor="0.0">
     <columnConstraints>
@@ -44,7 +44,7 @@
       <ScrollPane AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
         AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" hbarPolicy="NEVER"
         prefHeight="148.0" prefWidth="427.0">
-        <VBox prefHeight="50.0" prefWidth="778.0" spacing="5.0" fx:id="scrollpaneVBox"/>
+        <VBox prefHeight="50.0" prefWidth="778.0" spacing="5.0" fx:id="display"/>
       </ScrollPane>
     </AnchorPane>
     <AnchorPane GridPane.columnSpan="2" GridPane.rowIndex="6" prefHeight="200.0" prefWidth="200.0">
@@ -86,7 +86,7 @@
         <AnchorPane GridPane.columnIndex="1" prefHeight="31.0" prefWidth="84.0">
           <ComboBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
             AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
-            promptText="Origin" fx:id="pickupComboBox"/>
+            promptText="Origin" fx:id="originComboBox"/>
         </AnchorPane>
         <AnchorPane GridPane.columnIndex="2" layoutX="210.0" layoutY="10.0" prefHeight="200.0"
           prefWidth="200.0">

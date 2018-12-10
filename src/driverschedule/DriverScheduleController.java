@@ -120,12 +120,12 @@ public class DriverScheduleController {
         //Delete from database
         try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
             Statement statement = connection.createStatement()) {
-          statement.executeUpdate(String
-              .format(
-                  "DELETE from %s where (DAY='%s' and ORIGIN='%s' and DESTINATION='%s' and "
-                      + "TIME='%s')", Globals.getCurrentUser().getUserFolder().toUpperCase(),
-                  ride.day, ride.origin.getValue(), ride.destination.getValue(),
-                  ride.time.getValue()));
+
+          statement.executeUpdate(String.format(
+              "DELETE from %s where (DAY='%s' and ORIGIN='%s' and DESTINATION='%s' and TIME='%s')",
+              Globals.getCurrentUser().getUserFolder().toUpperCase(), ride.day,
+              ride.origin.getValue(), ride.destination.getValue(), ride.time.getValue()));
+
         } catch (SQLException exception) {
           System.out.println("Unable to delete from database");
         }
@@ -230,7 +230,7 @@ public class DriverScheduleController {
   }
 
   //Private class ride used for organization of dynamic javafx objects
-  private class Ride {
+  private static class Ride {
 
     private ComboBox<String> origin;
     private ComboBox<String> destination;

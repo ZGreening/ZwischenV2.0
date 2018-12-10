@@ -16,11 +16,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Date;
 
 public class Message implements Serializable, Comparable {
@@ -30,7 +25,7 @@ public class Message implements Serializable, Comparable {
   private String sender;
   private boolean read = false;
   private Date timeCreated = new Date();
-  private String path;
+  private String path; //The path of the message file
 
   /**
    * Constructor for the class Message.
@@ -54,15 +49,13 @@ public class Message implements Serializable, Comparable {
       return;
     }
 
-    try {
-      Path path = Paths.get(this.path);
+    Path path = Paths.get(this.path);
 
-      FileOutputStream fileOutputStream = new FileOutputStream(path.toString());
-      ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+    try (FileOutputStream fileOutputStream = new FileOutputStream(path.toString());
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+
       objectOutputStream.writeObject(this);
 
-      fileOutputStream.close();
-      objectOutputStream.close();
     } catch (FileNotFoundException exception) {
       System.out.println("File not found " + path);
     } catch (IOException exception) {
@@ -121,20 +114,8 @@ public class Message implements Serializable, Comparable {
    * unique, and calls writeFile to write a message file.
    */
   public void sendMessage() {
-    String folder = "";
-
-    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(
-            String.format("Select FOLDER from LOGIN WHERE USERNAME='%s'", recipient))) {
-      if (resultSet.next()) {
-        folder = resultSet.getString("FOLDER");
-      }
-    } catch (SQLException exception) {
-      System.out.println("Unable to get " + "'s folder");
-    }
-
-    Path path1 = Paths.get("lib/UserData/" + folder + "/messages");
+    String folderName = Globals.getOtherUserFolder(recipient);
+    Path path1 = Paths.get("lib/UserData/" + folderName + "/messages");
     File[] files = new File(path1.toString()).listFiles();
 
     int iii = 1; //Number of the file to check

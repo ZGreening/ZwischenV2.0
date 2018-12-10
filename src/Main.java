@@ -37,10 +37,12 @@ public class Main extends Application {
 
     Globals.changeScene("login/Login.fxml");
     //Todo Known issues:
-    //  Correct: FindBugs and CheckStyle errors!!!
     //  Fix: Driver Schedule only use available times, days cannot have the same time for driving
+    //  Change: user should not be allowed to select the same location for origin and destination
+    //    in available rides
     //  Fix: Check user created username is valid keys
     //  Add: preload message from request ride page
+    //  Add: Ride History functionality
     //  Fix: user cannot remove friend currently, user friends arrayList does not update before
     //    saving the serialized file.
     //  Fix: loadMessagesWithSendTo does not work at the moment

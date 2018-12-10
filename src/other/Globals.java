@@ -106,8 +106,8 @@ public class Globals {
       stage.show();
 
       //Set minimum size of window
-      stage.setMinWidth(scene.getWidth());
-      stage.setMinHeight(scene.getHeight());
+      stage.setMinHeight(stage.getHeight());
+      stage.setMinWidth(stage.getWidth());
 
       //If window is opened successfully, close old window
       stage = (Stage) oldSceneRoot.getScene().getWindow();
@@ -143,8 +143,8 @@ public class Globals {
       stage.show();
 
       //Set minimum size of window
-      stage.setMinWidth(scene.getWidth());
-      stage.setMinHeight(scene.getHeight());
+      stage.setMinHeight(stage.getHeight());
+      stage.setMinWidth(stage.getWidth());
     } catch (IOException exception) {
       System.out.println("Failed to open window at path: " + newScenePath);
       exception.printStackTrace();
@@ -177,8 +177,8 @@ public class Globals {
       stage.show();
 
       //Set minimum size of window
-      stage.setMinWidth(scene.getWidth());
-      stage.setMinHeight(scene.getHeight());
+      stage.setMinHeight(stage.getHeight());
+      stage.setMinWidth(stage.getWidth());
 
       //Set message recipient
       MessagesController controller = loader.getController();
@@ -191,6 +191,30 @@ public class Globals {
     } catch (IOException exception) {
       System.out.println("Unable to open message window");
     }
+  }
+
+  /**
+   * A method to get the user's userfolder name from the database.
+   *
+   * @param username The username of the user to get the userFolder name of.
+   * @return A string of the userFolders name
+   */
+  public static String getOtherUserFolder(String username) {
+    String userFolder = "";
+
+    try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(
+            String.format("SELECT FOLDER FROM LOGIN WHERE USERNAME='%s'", username))) {
+
+      if (resultSet.next()) {
+        userFolder = resultSet.getString("FOLDER");
+      }
+
+    } catch (SQLException exception) {
+      System.out.println("Unable to get userFolder from database");
+    }
+    return userFolder;
   }
 
   /**

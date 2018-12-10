@@ -79,8 +79,8 @@
         </rowConstraints>
         <AnchorPane GridPane.columnIndex="2" prefHeight="200.0" prefWidth="200.0">
           <ComboBox AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
-            AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" promptText="Username"
-            fx:id="addUserComboBox"/>
+            AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" focusTraversable="false"
+            promptText="Username" fx:id="addUserComboBox"/>
         </AnchorPane>
         <AnchorPane GridPane.columnIndex="3" prefHeight="200.0" prefWidth="200.0">
           <Button AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"

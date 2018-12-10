@@ -91,12 +91,12 @@ public class MainScreenController {
   }
 
   @FXML
-  void onRequestRidePressed(ActionEvent event) {
-    Globals.changeScene("riderequest/RideRequest.fxml");
+  void onAvailableDriversPressed(ActionEvent event) {
+    Globals.changeScene("availabledrivers/AvailableDrivers.fxml");
   }
 
   @FXML
-  void onViewHistoryPressed(ActionEvent event) {
+  void onRideHistoryPressed(ActionEvent event) {
     Globals.changeScene("ridehistory/RideHistory.fxml", root);
   }
 
@@ -106,7 +106,7 @@ public class MainScreenController {
   }
 
   @FXML
-  void onViewFriendsListPressed(ActionEvent event) {
+  void onFriendsListPressed(ActionEvent event) {
     Globals.changeScene("friendslist/friendslist.fxml");
   }
 

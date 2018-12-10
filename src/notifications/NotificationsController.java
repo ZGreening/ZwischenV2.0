@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -61,6 +63,9 @@ public class NotificationsController {
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle("Zwischen");
       stage.show();
+
+      stage.setMinHeight(stage.getHeight());
+      stage.setMinWidth(stage.getWidth());
 
       //Close old stage
       stage = (Stage) root.getScene().getWindow();
@@ -176,6 +181,7 @@ public class NotificationsController {
   void initialize() {
     for (Message message : Globals.getCurrentUser().getMessages()) {
       GridPane gridPane = new GridPane();
+      final String foldername = Globals.getOtherUserFolder(message.getSender());
 
       //Set column spacing
       ColumnConstraints column = new ColumnConstraints();
@@ -188,7 +194,7 @@ public class NotificationsController {
       gridPane.getColumnConstraints().add(column);
 
       column = new ColumnConstraints();
-      column.setPercentWidth(45);
+      column.setPercentWidth(35);
       gridPane.getColumnConstraints().add(column);
 
       column = new ColumnConstraints();
@@ -211,8 +217,7 @@ public class NotificationsController {
       //Get sender's avatar
       ImageView imageView = new ImageView();
       imageView.setImage(new Image(
-          Paths.get("lib/UserData/" + message.getSender() + "/defaultAvatar.png").toUri()
-              .toString()));
+          Paths.get("lib/UserData/" + foldername + "/avatar.png").toUri().toString()));
       imageView.setFitHeight(75);
       imageView.setFitWidth(75);
 
@@ -234,6 +239,11 @@ public class NotificationsController {
       gridPane.add(sender, 2, 0);
       gridPane.add(messageLabel, 3, 0);
       gridPane.add(checkBox, 4, 0);
+
+      //Space out gridPane children
+      for (Node child : gridPane.getChildren()) {
+        GridPane.setMargin(child, new Insets(5));
+      }
 
       //Set color for mouse hover
       gridPane.setStyle("-fx-background-color: silver");

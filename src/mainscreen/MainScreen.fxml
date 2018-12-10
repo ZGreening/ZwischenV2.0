@@ -234,8 +234,7 @@
               <children>
                 <Button AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                   AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" focusTraversable="false"
-                  mnemonicParsing="false" onAction="#onViewFriendsListPressed"
-                  text="View Friends List"/>
+                  mnemonicParsing="false" onAction="#onFriendsListPressed" text="Friends List"/>
               </children>
             </AnchorPane>
             <AnchorPane GridPane.columnSpan="2" GridPane.rowIndex="4" prefHeight="200.0"
@@ -244,7 +243,7 @@
                 <Button AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                   AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" focusTraversable="false"
                   layoutX="43.0" layoutY="1.0" mnemonicParsing="false"
-                  onAction="#onRequestRidePressed" text="Request Ride"/>
+                  onAction="#onAvailableDriversPressed" text="Available Drivers"/>
               </children>
             </AnchorPane>
             <AnchorPane GridPane.columnSpan="2" GridPane.rowIndex="7" prefHeight="200.0"
@@ -252,7 +251,7 @@
               <children>
                 <Button AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0"
                   AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" focusTraversable="false"
-                  mnemonicParsing="false" onAction="#onViewHistoryPressed" text="View History"/>
+                  mnemonicParsing="false" onAction="#onRideHistoryPressed" text="Ride History"/>
               </children>
             </AnchorPane>
           </children>

@@ -93,11 +93,12 @@ public class MessageViewController {
 
   @FXML
   void initialize() {
+    String userFolder = Globals.getOtherUserFolder(message.getSender());
+
     messageText.setText("Message: " + message.getMessage());
     sender.setText("Sender:\n" + message.getSender());
-    senderAvatar.setImage(new Image(
-        Paths.get("lib/UserData/" + message.getSender() + "/defaultAvatar.png").toUri()
-            .toString()));
+    senderAvatar.setImage(
+        new Image(Paths.get("lib/UserData/" + userFolder + "/avatar.png").toUri().toString()));
 
     scrollPane.setFitToWidth(true);
 
