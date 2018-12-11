@@ -44,7 +44,5 @@ public class Main extends Application {
     //    username must be able to be a table name.
     //  Add: preload message from request ride page
     //  Add: Ride History functionality
-    //  Fix: user cannot remove friend currently, user friends arrayList does not update before
-    //    saving the serialized file.
   }
 }

@@ -76,7 +76,7 @@ public class User implements Serializable {
   /**
    * A method for loading the current user's friends list.
    */
-  public void loadFriends() {
+  private void loadFriends() {
     Path path = Paths.get("lib/UserData/" + userFolder + "/");
     Path file = path.resolve("friends.list");
 
@@ -99,11 +99,10 @@ public class User implements Serializable {
     Path path = Paths.get("lib/UserData/" + userFolder + "/");
     Path file = path.resolve("friends.list");
 
-    System.out.println(file.toString());
-
     try (FileOutputStream fileOutputStream = new FileOutputStream(file.toString());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
 
+      System.out.println(friends);
       objectOutputStream.writeObject(friends);
 
     } catch (IOException exception) {

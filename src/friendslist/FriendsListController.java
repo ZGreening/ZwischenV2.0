@@ -45,25 +45,41 @@ public class FriendsListController {
     gridPane.getColumnConstraints().add(column);
     gridPane.getColumnConstraints().add(column);
 
+    //Create friend username label
     Label label = new Label();
     label.setText(friend);
     label.setFont(new Font(14));
 
+    //Create Send Message button
     Button sendMessage = new Button();
     sendMessage.setText("Send Message");
-    sendMessage.setOnAction(event -> Globals.loadMessagesWithSendTo(friend, root));
+    sendMessage.setFocusTraversable(false);
     sendMessage.setPrefHeight(100);
 
+    //Create Remove button
     Button removeFriend = new Button();
     removeFriend.setText("Remove");
-
-    removeFriend.setOnAction(event -> {
-      Globals.getCurrentUser().getFriends().remove(friend);
-      friendsListArray.remove(friend);
-      friendsList.getChildren().remove(gridPane);
-      Globals.getCurrentUser().storeFriends();
-    });
+    removeFriend.setFocusTraversable(false);
     removeFriend.setPrefHeight(100);
+
+    //Send message button functionality
+    sendMessage.setOnAction(event -> Globals.loadMessagesWithSendTo(friend, root));
+
+    //Remove friend functionality
+    removeFriend.setOnAction(event -> {
+      for (User friendObject : Globals.getCurrentUser().getFriends()) {
+
+        //Find and remove the friend object whose username matches the String friend
+        if (friend.equals(friendObject.getUsername())) {
+          Globals.getCurrentUser().getFriends().remove(friendObject);
+          friendsListArray.remove(friendObject);
+          friendsList.getChildren().remove(gridPane);
+
+        }
+        //Save to file
+        Globals.getCurrentUser().storeFriends();
+      }
+    });
 
     removeFriend.setAlignment(Pos.CENTER_RIGHT);
     sendMessage.setAlignment(Pos.CENTER);
