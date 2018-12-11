@@ -102,7 +102,6 @@ public class User implements Serializable {
     try (FileOutputStream fileOutputStream = new FileOutputStream(file.toString());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
 
-      System.out.println(friends);
       objectOutputStream.writeObject(friends);
 
     } catch (IOException exception) {

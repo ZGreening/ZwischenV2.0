@@ -58,6 +58,7 @@ public class CreateAccountController {
   @FXML
   private AnchorPane root;
 
+  //Create a unique folder
   private void createUserFolder() {
     try {
       Path path1 = Paths.get("lib/UserData/" + Globals.getCurrentUser().getUserFolder());
