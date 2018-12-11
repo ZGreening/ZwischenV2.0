@@ -46,6 +46,5 @@ public class Main extends Application {
     //  Add: Ride History functionality
     //  Fix: user cannot remove friend currently, user friends arrayList does not update before
     //    saving the serialized file.
-    //  Fix: loadMessagesWithSendTo does not work at the moment
   }
 }

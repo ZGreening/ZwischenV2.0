@@ -165,7 +165,7 @@ public class Globals {
       //Fetch resources
       Stage stage = new Stage();
       FXMLLoader loader = new FXMLLoader(
-          Globals.class.getResource("messages/Messages.fxml"));
+          Globals.class.getClassLoader().getResource("messages/Messages.fxml"));
 
       //Load scene
       AnchorPane anchorPane = loader.load();

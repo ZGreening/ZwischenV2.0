@@ -56,7 +56,7 @@ public class FriendsListController {
 
     Button removeFriend = new Button();
     removeFriend.setText("Remove");
-    System.out.println(friend);
+
     removeFriend.setOnAction(event -> {
       Globals.getCurrentUser().getFriends().remove(friend);
       friendsListArray.remove(friend);
