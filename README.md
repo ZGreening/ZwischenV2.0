@@ -22,7 +22,9 @@ note: The lib folder must be in the same directory as the jar file.
 
 ### Dependencies
 
-derby.jar
+[derby.jar](https://db.apache.org/derby/)
+
+The derby.jar file is part of the lib source files. You will need to set up the derby.jar file to run the program. To install, simply add the derby.jar file to project dependancies in the IDE. For [IntelliJ IDEA](https://www.jetbrains.com/idea/), click File/Project Structure/Modules, click the +, click jars or directories, select derby.jar from the lib folder, and click ok. Derby.jar should now be installed and the program should be ready to run.
 
 ## Usage:
 
@@ -41,7 +43,6 @@ allowing for greater consistency of scheduling through the app.
 
 Zwischen 2.0
 * [Zachary Greening](https://github.com/zgreening) -Developer
-
 
 ### Original Zwischen developers
 * [Zachary Greening](https://github.com/zgreening) -Lead Developer
