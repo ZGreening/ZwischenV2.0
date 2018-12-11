@@ -2,6 +2,8 @@
 
 The Car Sharing Application
 
+![Zwischen.gif](https://github.com/zgreening/ZwischenV2.0/blob/master/Zwischen.gif)
+
 ## Project: Zwischen
 
 Not every student at Fgcu has access to a car, and those who do may not have the desire to constantly use their own gas.
@@ -11,8 +13,6 @@ designed to help students at FGCU get around, as well as helping to reduce car e
 ### Zwischen 2.0
 
 This is a continuation of the original program [Zwischen](https://github.com/zgreening/Zwischen).
-
-
 
 ## Installation:
 
