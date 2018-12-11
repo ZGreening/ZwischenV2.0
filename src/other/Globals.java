@@ -25,6 +25,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import messages.MessagesController;
@@ -250,6 +251,19 @@ public class Globals {
     Collections.sort(usernames);
 
     return usernames;
+  }
+
+  /**
+   * A method that returns an ExtensionFilter for Image formats: PNG, JPG, and JPEG.
+   *
+   * @return ExtensionFilter for PNG, JPG, and JPEG
+   */
+  public static ExtensionFilter getImageFilter() {
+    ArrayList<String> extensionList = new ArrayList<>();
+    extensionList.add("*.jpeg");
+    extensionList.add("*.jpg");
+    extensionList.add("*.png");
+    return new ExtensionFilter("PNG, JPG, or JPEG", extensionList);
   }
 }
 

@@ -19,7 +19,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -29,7 +28,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
 public class CreateAccountController {
@@ -186,6 +184,7 @@ public class CreateAccountController {
       storeAccountAndLogin(usernameText, passwordText, emailText, phoneNumText);
 
       //Create a table for the new user to store their schedule
+      //Table name is the userFolder name
       try (Connection connection = DriverManager.getConnection("jdbc:derby:lib/ZwischenDB");
           Statement statement = connection.createStatement()) {
 
@@ -210,13 +209,7 @@ public class CreateAccountController {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
 
-    //Only allow jpeg jpg and png to be selected
-    ArrayList<String> extensionList = new ArrayList<>();
-    extensionList.add("*.jpeg");
-    extensionList.add("*.jpg");
-    extensionList.add("*.png");
-    fileChooser.getExtensionFilters().addAll(
-        new ExtensionFilter("PNG, JPG, or JPEG", extensionList));
+    fileChooser.getExtensionFilters().addAll(Globals.getImageFilter());
 
     //Open file chooser
     file = fileChooser.showOpenDialog(root.getScene().getWindow());

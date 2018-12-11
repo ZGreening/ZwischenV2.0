@@ -14,7 +14,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -24,7 +23,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import other.Globals;
 
 public class EditAccountController {
@@ -128,13 +126,7 @@ public class EditAccountController {
     FileChooser fileChooser = new FileChooser();
     fileChooser.setInitialDirectory(new File(System.getProperty("user.home") + "/Documents"));
 
-    //Only allow jpeg jpg and png to be selected
-    ArrayList<String> extensionList = new ArrayList<>();
-    extensionList.add("*.jpeg");
-    extensionList.add("*.jpg");
-    extensionList.add("*.png");
-    fileChooser.getExtensionFilters().addAll(
-        new ExtensionFilter("PNG, JPG, or JPEG", extensionList));
+    fileChooser.getExtensionFilters().addAll(Globals.getImageFilter());
 
     //Open file chooser
     file = fileChooser.showOpenDialog(root.getScene().getWindow());
